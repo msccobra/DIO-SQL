@@ -20,4 +20,7 @@ Por fim, criei uma tabela relacionada ao pagamento, composta por: modo de pagame
 
 Dessa maneira, o esquema descrito acima pode ser visto na figura:
 
-https://github.com/msccobra/DIO-SQL/blob/main/esquema%201.png
+
+![esquema](https://github.com/msccobra/DIO-SQL/blob/main/esquema%201.png)
+
+
