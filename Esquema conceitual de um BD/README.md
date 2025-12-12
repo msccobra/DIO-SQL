@@ -4,7 +4,7 @@ A idéia deste projeto é fazer um projeto simples para um BD de uma oficina/con
 
 ### Cliente
 
-Esta tabela trata a respeito da identificação do cliente, portanto possui como PK seu nome e sua identificação, que também é uma chave única, podendo ser CPF ou CNPJ. Há também os localçizadores, como o endereço e o CEP, além de uma entrada, do tipo INT, relacionada ao tipo de cliente (p.ex: 0 para PF e 1 para PJ).
+Esta tabela trata a respeito da identificação do cliente, portanto possui como PK a sua identificação (número interno), que também é uma chave única, além de entredas paar seu nome, seu CPF (única) e seu telefone.
 
 ### Produto
 
@@ -16,7 +16,8 @@ Essa tabela possui identificadores relacionados ao processo de despacho das merc
 
 ### Pagamento
 
-Por fim, criei uma tabela relacionada ao pagamento, composta por: modo de pagamento (INT/PK), parcelamento (INT), que poderia ter o formato 0 para pagamento à vista e 1 para pagamento parcelado, número de parcelas (INT), que segue o mesmo modelo, com 1 sendo pagamento à vista e assim em diante, número do cartão, que aceita valores nulos, e.g, no caso de pagamento por Pix ou boleto, não há necessidade de armazenar-se esse valor e foram importados os registros de nome e identificação de cliente da tabela homônima, por conmsequência de seu relacionamento 1:1, pois nesse caso optei que o cliente possa apenas usar um meio de pagamento por compra.
+Essa tabela é composta integralmente de chaves estrangeiras, advindas das tabelas de Ordem de Serviço, de onde foi importado o número da OS, que é a PK dessa tabela. Dessa maneira, é possível sabermos todos os dados relacionados a ela, desde informações sobre o veículo e seu dono, até o tipo de serviço e descrição do mesmo. Outra FK que foi importada foi o valor, também de Ordem de Serviço. Pode parecer redundante, já que a chave anteriormente descrita, por ser uma PK, já traz todas as informações consigo, mas optei por essa redundância. A outra entrada dessa tabela é referente ao id do cliente, que poderia ser obtida através do número da OS, mas por uma questão de facilidade, decidi colocá-la também.
+
 
 Dessa maneira, o esquema descrito acima pode ser visto na figura:
 
