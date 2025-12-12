@@ -1,6 +1,6 @@
-# Design inicial de um BD simples para um e-commerce
+# Esquema conceitual de um BD
 
-A idéia deste projeto é fazer um projeto simples para um BD de um e-commerce. Para tal, fiz apenas quatro tabelas de entidades: Cliente, Produto, Entrega e Pagamento, as quais detalharei a seguir.
+A idéia deste projeto é fazer um projeto simples para um BD de uma oficina/concessionária. Para tal, fiz esse projeto com oito tabelas: Cliente, Veículo, Orçamento, Ordem de Serviço, Responsável e Pagamento, além das tabelas que são provenientes dos relacionamentos que eu defini no meu modelo, Execução de OS e Orçamento has Responsável.
 
 ### Cliente
 
