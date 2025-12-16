@@ -4,15 +4,16 @@ A idéia deste projeto é fazer um projeto simples para um BD de uma oficina/con
 
 ### Cliente
 
-Esta tabela trata a respeito da identificação do cliente, portanto possui como PK a sua identificação (número interno), que também é uma chave única, além de entredas paar seu nome, seu CPF (única) e seu telefone.
+Esta tabela trata a respeito da identificação do cliente, portanto possui como PK a sua identificação (número interno), que também é uma chave única, além de entredas para seu nome, seu CPF (única) e seu telefone.
 
-### Produto
+### Veículo
 
-É uma tabela relacionada à identificação do produto, composta pelos valores de SKU (INT), quantidade em estoque (INT), valor (FLOAT), departamento (INT) e descrição (LONGTEXT). O Workbench importou algumas FK da tabela Clientes devido ao relacionamento 1:N entre as tabelas, onde 1 cliente pode escolher diversos produtos. Há também um relacionamento N:M com a tabela Entrega. Escolhi esse tipo de relacionamento, pois, não necessariammente, todos os produtos serão despachados no mesmo pacote/lote ao cliente, devido a restrições de tamanho e disponibilidade.
+É uma tabela relacionada à identificação do veículo, composta pelo seu id que é a PK, além de outras informações como marca, modelo e ano, além de uma chave importada, que é o idCliente, advinda do relacionamento 1:N entre essas tabelas.
 
-### Entrega
+### Orçamento
 
-Essa tabela possui identificadores relacionados ao processo de despacho das mercadorias ao cliente, sendo composta por: Tipo de entrega (INT/PK), que pode ser realacionada a entrega comum ou expressa, ID transportadora (INT), endereço e CEP, que são FKs importadas da tabela de clientes e prazo (INT)
+Essa tabela é relacionada ao orçamento feito para o serviço ou conjunto de serviços a serem feitos (ou não) no veículo. Desas maneira, sua PK é o número do orçamento, e para cada orçamento há diversas chaves descritivas, como: tipo de serviço, que pode ser revisão, emergência ou troca simples; temos o ID responsável, que é uma identificação interna sobre o funcionário que fará a avaliação (não necessariamente é o mesmo responsável pela execução do serviço, por isso não foi uma chave importada), tem o id do veículo, que é uma chave estrangeira, advinda de um relacionamento 1:1 entre a tabela orçamento e a tabela veículo, há também duas chaves descritivas dos serviços (em formato LONGTEXT), que são a descrição dos serviços e a lista de peças, o valor, que um float e o status de aprovação do orçamento, que pode ser total, parcial ou negativo.
+
 
 ### Pagamento
 
