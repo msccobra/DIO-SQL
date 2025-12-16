@@ -12,7 +12,26 @@ Esta tabela trata a respeito da identificação do cliente, portanto possui como
 
 ### Orçamento
 
-Essa tabela é relacionada ao orçamento feito para o serviço ou conjunto de serviços a serem feitos (ou não) no veículo. Desas maneira, sua PK é o número do orçamento, e para cada orçamento há diversas chaves descritivas, como: tipo de serviço, que pode ser revisão, emergência ou troca simples; temos o ID responsável, que é uma identificação interna sobre o funcionário que fará a avaliação (não necessariamente é o mesmo responsável pela execução do serviço, por isso não foi uma chave importada), tem o id do veículo, que é uma chave estrangeira, advinda de um relacionamento 1:1 entre a tabela orçamento e a tabela veículo, há também duas chaves descritivas dos serviços (em formato LONGTEXT), que são a descrição dos serviços e a lista de peças, o valor, que um float e o status de aprovação do orçamento, que pode ser total, parcial ou negativo.
+Essa tabela é relacionada ao orçamento feito para o serviço ou conjunto de serviços a serem feitos (ou não) no veículo. Desas maneira, sua PK é o número do orçamento, e para cada orçamento há diversas chaves descritivas, como: tipo de serviço, que pode ser revisão, emergência ou troca simples; temos o ID responsável, que é uma identificação interna sobre o funcionário que fará a avaliação, tem o id do veículo, que é uma chave estrangeira, advinda de um relacionamento 1:1 entre a tabela orçamento e a tabela veículo, há também duas chaves descritivas dos serviços (em formato LONGTEXT), que são a descrição dos serviços e a lista de peças, o valor, que um float e o status de aprovação do orçamento, que pode ser total, parcial ou negativo.
+
+### Ordem de serviço
+
+Essa tabela é bastante semelhante à tabela orçamento, onde sua PK é o número da OS e há algumas chaves descritivas em LONGTEXT, como descrição e lista de peças, que NÃO são importadas de Orçamento, pois pode haver apenas aprovação parcial do orçamento de serviços, e, por fim há o id do responsável pelo serviço, que, neste modelo, será o mesmo avaliador que fez o orçamento, por uma questão de simplicidade.
+
+### Responsável
+
+Essa tabela tem apenas o id do responsável pelos serviços e pela avaliação.
+
+
+Agora há as demais tabelas, que são geradas por meio dos relacionamentos:
+
+### Orçamento has responsável
+
+O nome pode não ser brilhante, mas ela faz a conexão entre o responsável e os orçamentos. Ela é composta apenas por chaves estrangeiras como o número da OS, o id do responsável o id do veículo e o status de aprovação do serviço.
+
+### Execução de OS
+
+Essa tabela descreve a OS, com suas chaves, todas estrangeiras, número da OS e id do responsável.
 
 
 ### Pagamento
