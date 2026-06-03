@@ -8,6 +8,47 @@ Eu remodelei o esquema do BD da tarefa anterior, para que não houvesse necessid
 
 Na questão dos dados persistidos, populei algumas das tabelas com cerca de 5 entradas, para que fosse possível fazer-se as queries mais complexas. Alguns exemplos de queries estão logo abaixo:
 
+
+Nesse primeiro exemplo, apenas fiz alguns joins em sequência, a informação retornada não foi de grande utilidade. No caso, o número de clientes que pagaram por boleto ou por cartão, a soma dos valores de todas as compras em cada modalidade de pagamento e as médias por compra em cada modalidade. 
 ```
-placeholder
+select round(sum(c.valor), 2) as soma, round(avg(c.valor), 2) as média, p.Tipo_pagamento, count(p.tipo_pagamento)
+from pagamento p
+right join compra_efetuada c
+on p.id_compra = c.id_compra
+right join cliente cl
+on cl.id_cliente = c.id_cliente
+group by p.Tipo_pagamento;
 ```
+
+Já na segunda query, quis descobrir a quantidade de produtos do tipo 'lgoled65g5' vendidos. Vendo essa query, terei de reformular essa parte do schema, pois as consultas estão demasiadamente complexas para a obtenção de algo tão simples. O ifnull foi necessário, pois valor default da tabela estava em null, em vez de zero, outra coisa a ser corrigida no futuro.
+
+```
+select ifnull(quantidade1,0) + ifnull((select quantidade2
+from compra_efetuada c
+where sku2 = 'lgoled65g5'),0) +  ifnull((select quantidade3
+from compra_efetuada c
+where sku3 = 'lgoled65g5'),0) as 'Soma total'
+from compra_efetuada
+where sku1 = 'lgoled65g5';
+```
+Alternativamente:
+```
+SELECT
+    ifnull((SELECT SUM(quantidade1) FROM compra_efetuada WHERE sku1 = 'lgoled65g5'), 0) +
+    ifnull((SELECT SUM(quantidade2) FROM compra_efetuada WHERE sku2 = 'lgoled65g5'),0) +
+    ifnull((SELECT SUM(quantidade2) FROM compra_efetuada WHERE sku3 = 'lgoled65g5'),0) AS soma_total;
+```
+
+
+A terceira query tem alguns joins e uma cláusula group by, e serviu para ver todas as compras de cada cliente cadastrado, seu valor e o tipo de pagamento efetuado:
+
+```
+select p.id_compra, cl.nome, cl.tipo_cliente as 'PF=1, PJ=2', ce.valor, p.tipo_pagamento as '1=cartão, 2=boleto', p.parcelas
+from compra_efetuada ce
+right join cliente cl
+on ce.id_cliente = cl.id_cliente
+left join pagamento p
+on ce.id_compra = p.id_compra
+order by ce.valor desc;
+```
+
