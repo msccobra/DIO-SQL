@@ -1,4 +1,4 @@
-#Construindo seu Primeiro Projeto Lógico de Banco de Dados
+# Construindo seu Primeiro Projeto Lógico de Banco de Dados
 
 O desafio da vez consistia em passar o modelo EER de um e-commerce para o modelo de um BD em si, com a definição e população (persistência de dados) das tabelas, definições de PK e FK, garantindo a integridade referencial do BD.
 
