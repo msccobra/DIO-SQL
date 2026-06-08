@@ -52,3 +52,6 @@ on ce.id_compra = p.id_compra
 order by ce.valor desc;
 ```
 
+# Construindo seu Primeiro Projeto Lógico de Banco de Dados v2
+
+Para essa tarefa, fiz algumas modificações na estrutura do banco de dados, de maneira a facilitar as consultas e inserção de dados. Talvez não tenham sido as modificações que eu pensava. 
