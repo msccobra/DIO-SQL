@@ -54,6 +54,6 @@ order by ce.valor desc;
 
 # Construindo seu Primeiro Projeto Lógico de Banco de Dados v2
 
-Para essa tarefa, fiz algumas modificações na estrutura do banco de dados, de maneira a facilitar as consultas e inserção de dados. Foi mudada a estrutura das inserções das compras e produtos associados a elas. Dessa maneira, o EER mudou para o formato da figura abaixo:
+Para essa tarefa, fiz algumas modificações na estrutura do banco de dados, de maneira a facilitar as consultas e inserção de dados. Foi mudada a estrutura das inserções das compras e produtos associados a elas. Antes, cada compra era limitada a três produtos, agora o número de produtos é ilimitado. É aberto um id_compra na tabela compra_efetuada e daí serão adicionados os produtos comprados, com seu respectivo id_compra através da tabela item_compra. Facilitou e escalou bastante esse processo. Dessa maneira, o EER mudou para o formato da figura abaixo:
 
-
+![ecommercev3](https://github.com/msccobra/DIO-SQL/blob/main/Projeto%20l%C3%B3gico%20de%20um%20BD/ecommerce%20v3.png)
