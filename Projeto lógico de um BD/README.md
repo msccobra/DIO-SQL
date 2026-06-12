@@ -57,3 +57,16 @@ order by ce.valor desc;
 Para essa tarefa, fiz algumas modificações na estrutura do banco de dados, de maneira a facilitar as consultas e inserção de dados. Foi mudada a estrutura das inserções das compras e produtos associados a elas. Antes, cada compra era limitada a três produtos, agora o número de produtos é ilimitado. É aberto um id_compra na tabela compra_efetuada e daí serão adicionados os produtos comprados, com seu respectivo id_compra através da tabela item_compra. Facilitou e escalou bastante esse processo. Dessa maneira, o EER mudou para o formato da figura abaixo:
 
 ![ecommercev3](https://github.com/msccobra/DIO-SQL/blob/main/Projeto%20l%C3%B3gico%20de%20um%20BD/ecommerce%20v3.png)
+
+A primeira query é um pouco mais complexa que os casos abordados na atividade anterior. Dessa vez eu queria saber o valor total gasto por cada cliente que fez duas ou mais compras no site:
+
+```
+select nome, cl.id_cliente, round(sum(valor_total),2) as soma_total, count(*)
+from cliente cl
+left join compra_efetuada ce
+on ce.id_cliente = cl.id_cliente
+group by cl.id_cliente
+having soma_total > 1000;
+```
+
+A segunda query
