@@ -69,4 +69,28 @@ group by cl.id_cliente
 having Número_de_compras >= 2;;
 ```
 
-A segunda query
+A segunda query é simples, mas é destinada a gerar dados para uma futura análise de correlação entre os valores de cada evento de compra e o número de parcelas, a fim de entender o comportamento dos clientes em relação ao pagamento. Incluí também dados de mopdalidade de pagamento, se cartão ou boleto. Pode ser interessante para se fazer uma regressão logística de análise de comportamento.
+
+```
+select valor_total, tipo_pagamento, parcelas
+from compra_efetuada c
+inner join pagamento p
+on p.id_compra = c.id_compra
+order by parcelas;
+```
+
+A terceira query destina-se a traçar o perfil de compra de cada cliente, para que a empresa possa fazer recomendações personalizadas de produtos e promoções exclusivas para cada cliente, por fiz o cruzamento das SKU e departamento versus o id_cliente. Populei os dados com departamentos de eletrodomésticos, vestuário e informática. Em um ecomemerce real, obviamente, haveria muitos produtos e departamentos a mais, mas é uma idéia a ser trabalhada em um ecommerce real, além dos algoritmos clássicos de "produtos relacionados" e dos cookies de navegação. 
+
+```
+select ce.id_compra, cl.id_cliente, cl.nome, i.sku, p.valor, p.departamento
+from item_compra i
+inner join compra_efetuada ce
+on i.id_compra=ce.id_compra
+inner join cliente cl
+on ce.id_cliente=cl.id_cliente
+inner join produto p
+on p.sku=i.sku
+order by nome;
+```
+
+
