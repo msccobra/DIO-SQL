@@ -61,12 +61,12 @@ Para essa tarefa, fiz algumas modificações na estrutura do banco de dados, de 
 A primeira query é um pouco mais complexa que os casos abordados na atividade anterior. Dessa vez eu queria saber o valor total gasto por cada cliente que fez duas ou mais compras no site:
 
 ```
-select nome, cl.id_cliente, round(sum(valor_total),2) as soma_total, count(*)
+select nome, cl.id_cliente, round(sum(valor_total),2) as soma_total, count(*) as Número_de_compras
 from cliente cl
 left join compra_efetuada ce
 on ce.id_cliente = cl.id_cliente
 group by cl.id_cliente
-having soma_total > 1000;
+having Número_de_compras >= 2;;
 ```
 
 A segunda query
